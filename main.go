@@ -1,16 +1,16 @@
 package main
 
 import (
-  "net/http"
+	"net/http"
 )
 
 func main() {
-  http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
-    w.Write([]byte("Welcome to my website!"))
-  })
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("Welcome to my website test!"))
+	})
 
-  fs := http.FileServer(http.Dir("static/"))
-  http.Handle("/static/", http.StripPrefix("/static/", fs))
+	fs := http.FileServer(http.Dir("static/"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-  http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", nil)
 }
